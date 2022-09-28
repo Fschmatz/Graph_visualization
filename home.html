@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-    <title>Graph Visualization</title>
+    <title>Fernando Graph Visualization</title>
     <meta charset="UTF-8">
     <script
             type="text/javascript"
@@ -13,9 +13,35 @@
 
 <a href="https://visjs.github.io/vis-network/docs/network/"  target="_blank"> vis.js Network Docs</a>
 
+<!--exibição do graph-->
 <div class="container">
     <div id="mynetwork"></div>
 </div>
+
+<br>
+<br>
+
+<!--botoes-->
+<form id="add">
+    Node: <input type="text" id='add-node-txtfield'>
+    <button id="add-node-button" type="button">Add Node</button>
+    <br>
+    <br>
+</form>
+
+<form id="connect">
+    To: <input type="text" id='to'>
+    <br>
+    From: <input type="text" id='from'>
+    <br>
+    <button id="btnConnect" type="button">Connect Node</button>
+    <br>
+</form>
+
+<h3>Node List</h3>
+<!--<button id="btn-show-nodes" type="button">Update list</button>-->
+<p id="nodeList"></p>
+
 
 <script type="text/javascript" src="graph.js"></script>
 </body>

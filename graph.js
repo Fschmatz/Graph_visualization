@@ -1,3 +1,10 @@
+let buttonConnect = document.getElementById('btnConnect');
+let to = parseInt(document.getElementById('to').value);
+let from = parseInt(document.getElementById('from').value);
+let btnAddNode = document.getElementById('add-node-button');
+let labelNewNode = document.getElementById('add-node-txtfield');
+
+
 let nodes = new vis.DataSet([
 
     //EX cidades
@@ -6,7 +13,7 @@ let nodes = new vis.DataSet([
     { id: 3, label: "Encantado" },
     { id: 4, label: "Guaporé" },
     { id: 5, label: "Arvorezinha" },
-    { id: 6, label: "Bento Gonçalvez" },
+    { id: 6, label: "Bento Gonçalves" },
     { id: 7, label: "Carlos Barbosa" },
     { id: 8, label: "Estrela" },
     { id: 9, label: "Bom Retiro do Sul" },
@@ -21,6 +28,8 @@ let nodes = new vis.DataSet([
     { id: 6, label: "Node 6" },
     { id: 7, label: "Node 7" },*/
 ]);
+
+showNodesList();
 
 let edges = new vis.DataSet([
 
@@ -75,3 +84,27 @@ let options = {
 let network = new vis.Network(container, data, options);
 
 
+//########################
+function connectNode() {
+    //nodes.add("to:${to}, from:${from}");
+    //clearFields();
+}
+
+btnAddNode.addEventListener('click', addNewNode);
+
+function addNewNode() {
+    nodes.update({ id: (nodes.length + 1), label: labelNewNode.value });
+    showNodesList();
+}
+
+function showNodesList() {
+    let items = nodes.get({
+        fields: ['id', 'label'],
+    });
+
+    let nodeListPrint = '';
+    for( let i = 0; i < nodes.length; i++){
+        nodeListPrint += items[i]['id'] +" = "+ items[i]['label'] +"<br>"
+    }
+   document.getElementById('nodeList').innerHTML = nodeListPrint
+}
