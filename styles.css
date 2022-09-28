@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+#mynetwork {
+    width: 600px;
+    height: 500px;
+    border: 2px solid #505050;
+}
