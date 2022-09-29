@@ -19,29 +19,37 @@
 </div>
 
 <br>
-<br>
 
-<!--botoes-->
-<form id="add">
-    Node: <input type="text" id='add-node-txtfield'>
-    <button id="add-node-button" type="button">Add Node</button>
-    <br>
-    <br>
-</form>
+<div class="split left">
+    <!--botoes-->
+    <form id="add">
+        Node Name: <input type="text" id='add-node-txtfield'>
+        <button id="add-node-button" type="button">Add Node</button>
+        <br>
+        <br>
+    </form>
 
-<form id="connect">
-    To: <input type="text" id='to'>
-    <br>
-    From: <input type="text" id='from'>
-    <br>
-    <button id="btnConnect" type="button">Connect Node</button>
-    <br>
-</form>
+    <form id="delete">
+        Node (ID): <input type="text" id='delete-node-txtfield'>
+        <button id="delete-node-button" type="button">Delete Node</button>
+        <br>
+        <br>
+    </form>
 
-<h3>Node List</h3>
-<!--<button id="btn-show-nodes" type="button">Update list</button>-->
-<p id="nodeList"></p>
+    <form id="connect">
+        To: (ID)<input type="text" id='to'>
+        <br>
+        From: (ID)<input type="text" id='from'>
+        <button id="btnConnect" type="button">Connect</button>
+        <br>
+    </form>
+</div>
 
+<div class="split right">
+    <h3>Node List</h3>
+    <!--<button id="btn-show-nodes" type="button">Update list</button>-->
+    <p id="nodeList"></p>
+</div>
 
 <script type="text/javascript" src="graph.js"></script>
 </body>

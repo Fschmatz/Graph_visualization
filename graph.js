@@ -1,6 +1,8 @@
-let buttonConnect = document.getElementById('btnConnect');
-let to = parseInt(document.getElementById('to').value);
-let from = parseInt(document.getElementById('from').value);
+let btnConnect = document.getElementById('btnConnect');
+let to = document.getElementById('to');
+let from = document.getElementById('from');
+let btnDeleteNode = document.getElementById('delete-node-button');
+let idDeleteNode = document.getElementById('delete-node-txtfield');
 let btnAddNode = document.getElementById('add-node-button');
 let labelNewNode = document.getElementById('add-node-txtfield');
 
@@ -28,9 +30,6 @@ let nodes = new vis.DataSet([
     { id: 6, label: "Node 6" },
     { id: 7, label: "Node 7" },*/
 ]);
-
-showNodesList();
-
 let edges = new vis.DataSet([
 
     //EX cidades
@@ -54,7 +53,6 @@ let edges = new vis.DataSet([
     { from: 6, to: 1 },
     { from: 7, to: 1 },*/
 ]);
-
 let container = document.getElementById("mynetwork");
 let data = {
     nodes: nodes,
@@ -80,20 +78,29 @@ let options = {
         arrowStrikethrough: true,
     }
 };
-
 let network = new vis.Network(container, data, options);
 
 
-//########################
-function connectNode() {
-    //nodes.add("to:${to}, from:${from}");
-    //clearFields();
-}
+//######################## My Functions
 
+showNodesList();
 btnAddNode.addEventListener('click', addNewNode);
+btnDeleteNode.addEventListener('click', deleteNode);
+btnConnect.addEventListener('click',connectNode)
+
+function connectNode() {
+    edges.update({ to:parseInt(to.value) , from:parseInt(from.value)});
+    to.value = '';
+    from.value = '';
+}
 
 function addNewNode() {
     nodes.update({ id: (nodes.length + 1), label: labelNewNode.value });
+    showNodesList();
+}
+
+function deleteNode() {
+    data.nodes.remove([{id: parseInt(idDeleteNode.value)}]);
     showNodesList();
 }
 
