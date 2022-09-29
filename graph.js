@@ -1,5 +1,5 @@
 let btnConnect = document.getElementById('btnConnect');
-let btnRemoveConnect = document.getElementById('btnRemoveConnect');
+let btnDeleteAll = document.getElementById('btn-delete-all');
 let to = document.getElementById('to');
 let from = document.getElementById('from');
 let btnDeleteNode = document.getElementById('delete-node-button');
@@ -11,15 +11,15 @@ let labelNewNode = document.getElementById('add-node-txtfield');
 let nodes = new vis.DataSet([
 
     //EX cidades
-    { id: 1, label: "Lajeado" },
-    { id: 2, label: "Arroio do Meio" },
-    { id: 3, label: "Encantado" },
-    { id: 4, label: "Guaporé" },
-    { id: 5, label: "Arvorezinha" },
-    { id: 6, label: "Bento Gonçalves" },
-    { id: 7, label: "Carlos Barbosa" },
-    { id: 8, label: "Estrela" },
-    { id: 9, label: "Bom Retiro do Sul" },
+    {id: 1, label: "Lajeado"},
+    {id: 2, label: "Arroio do Meio"},
+    {id: 3, label: "Encantado"},
+    {id: 4, label: "Guaporé"},
+    {id: 5, label: "Arvorezinha"},
+    {id: 6, label: "Bento Gonçalves"},
+    {id: 7, label: "Carlos Barbosa"},
+    {id: 8, label: "Estrela"},
+    {id: 9, label: "Bom Retiro do Sul"},
 
 
     //EX nodes simples
@@ -34,16 +34,16 @@ let nodes = new vis.DataSet([
 let edges = new vis.DataSet([
 
     //EX cidades
-    { from: 1, to: 2 },
-    { from: 1, to: 8 },
-    { from: 1, to: 7 },
-    { from: 2, to: 3 },
-    { from: 3, to: 4 },
-    { from: 3, to: 5 },
-    { from: 3, to: 6 },
-    { from: 5, to: 4 },
-    { from: 7, to: 6 },
-    { from: 8, to: 9 },
+    {from: 1, to: 2},
+    {from: 1, to: 8},
+    {from: 1, to: 7},
+    {from: 2, to: 3},
+    {from: 3, to: 4},
+    {from: 3, to: 5},
+    {from: 3, to: 6},
+    {from: 5, to: 4},
+    {from: 7, to: 6},
+    {from: 8, to: 9},
 
     //EX nodes simples
     /*{ from: 1, to: 3 },
@@ -62,7 +62,7 @@ let data = {
 
 //SETTINGS
 let options = {
-    edges:{
+    edges: {
 
         //exibir direção das setas
         arrows: 'to, from',// para ambos
@@ -70,7 +70,7 @@ let options = {
 
         color: 'black',
         font: '12px arial #ff0000',
-        scaling:{
+        scaling: {
             label: true,
         },
         smooth: true,
@@ -87,11 +87,11 @@ let network = new vis.Network(container, data, options);
 showNodesList();
 btnAddNode.addEventListener('click', addNode);
 btnDeleteNode.addEventListener('click', deleteNode);
-btnConnect.addEventListener('click',connectNode);
-//btnRemoveConnect.addEventListener('click',deleteConnection)
+btnConnect.addEventListener('click', connectNode);
+btnDeleteAll.addEventListener('click', deleteAllNodes)
 
 function connectNode() {
-    if(to.value !== '' && from.value !== '') {
+    if (to.value !== '' && from.value !== '') {
         edges.update({to: parseInt(to.value), from: parseInt(from.value)});
         to.value = '';
         from.value = '';
@@ -108,8 +108,19 @@ function deleteConnection(){
 }
 */
 
+function deleteAllNodes() {
+    edges = new vis.DataSet([]);
+    nodes = new vis.DataSet([]);
+    data = {
+        nodes: nodes,
+        edges: edges,
+    };
+    network = new vis.Network(container, data, options);
+    showNodesList();
+}
+
 function addNode() {
-    if(labelNewNode.value !== '') {
+    if (labelNewNode.value !== '') {
         nodes.update({id: (nodes.length + 1), label: labelNewNode.value});
         labelNewNode.value = '';
         showNodesList();
@@ -117,7 +128,7 @@ function addNode() {
 }
 
 function deleteNode() {
-    if(idDeleteNode.value !== '') {
+    if (idDeleteNode.value !== '') {
         data.nodes.remove([{id: parseInt(idDeleteNode.value)}]);
         idDeleteNode.value = '';
         showNodesList();
@@ -130,8 +141,8 @@ function showNodesList() {
     });
 
     let nodeListPrint = '';
-    for( let i = 0; i < nodes.length; i++){
-        nodeListPrint += "<li>" + items[i]['id'] +" = "+ items[i]['label'] +"</li>"
+    for (let i = 0; i < nodes.length; i++) {
+        nodeListPrint += "<li>" + items[i]['id'] + " = " + items[i]['label'] + "</li>"
     }
-   document.getElementById('nodeList').innerHTML = nodeListPrint
+    document.getElementById('nodeList').innerHTML = nodeListPrint
 }
