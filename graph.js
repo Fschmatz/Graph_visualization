@@ -99,6 +99,7 @@ function connectNode() {
 function addNode() {
     if(labelNewNode.value !== '') {
         nodes.update({id: (nodes.length + 1), label: labelNewNode.value});
+        labelNewNode.value = '';
         showNodesList();
     }
 }
@@ -106,6 +107,7 @@ function addNode() {
 function deleteNode() {
     if(idDeleteNode.value !== '') {
         data.nodes.remove([{id: parseInt(idDeleteNode.value)}]);
+        idDeleteNode.value = '';
         showNodesList();
     }
 }
