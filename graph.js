@@ -84,24 +84,30 @@ let network = new vis.Network(container, data, options);
 //######################## My Functions
 
 showNodesList();
-btnAddNode.addEventListener('click', addNewNode);
+btnAddNode.addEventListener('click', addNode);
 btnDeleteNode.addEventListener('click', deleteNode);
 btnConnect.addEventListener('click',connectNode)
 
 function connectNode() {
-    edges.update({ to:parseInt(to.value) , from:parseInt(from.value)});
-    to.value = '';
-    from.value = '';
+    if(to.value !== '' && from.value !== '') {
+        edges.update({to: parseInt(to.value), from: parseInt(from.value)});
+        to.value = '';
+        from.value = '';
+    }
 }
 
-function addNewNode() {
-    nodes.update({ id: (nodes.length + 1), label: labelNewNode.value });
-    showNodesList();
+function addNode() {
+    if(labelNewNode.value !== '') {
+        nodes.update({id: (nodes.length + 1), label: labelNewNode.value});
+        showNodesList();
+    }
 }
 
 function deleteNode() {
-    data.nodes.remove([{id: parseInt(idDeleteNode.value)}]);
-    showNodesList();
+    if(idDeleteNode.value !== '') {
+        data.nodes.remove([{id: parseInt(idDeleteNode.value)}]);
+        showNodesList();
+    }
 }
 
 function showNodesList() {
@@ -111,7 +117,7 @@ function showNodesList() {
 
     let nodeListPrint = '';
     for( let i = 0; i < nodes.length; i++){
-        nodeListPrint += items[i]['id'] +" = "+ items[i]['label'] +"<br>"
+        nodeListPrint += "<li>" + items[i]['id'] +" = "+ items[i]['label'] +"</li>"
     }
    document.getElementById('nodeList').innerHTML = nodeListPrint
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <title>Fernando Graph Visualization</title>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<a href="https://visjs.github.io/vis-network/docs/network/"  target="_blank"> vis.js Network Docs</a>
+<a href="https://visjs.github.io/vis-network/docs/network/" target="_blank"> vis.js Network Docs</a>
 
 <!--exibição do graph-->
 <div class="container">
@@ -19,36 +19,39 @@
 </div>
 
 <br>
+<br>
+<div class="row">
 
-<div class="split left">
-    <!--botoes-->
-    <form id="add">
-        Node Name: <input type="text" id='add-node-txtfield'>
-        <button id="add-node-button" type="button">Add Node</button>
-        <br>
-        <br>
-    </form>
+    <div class="column-left">
+        <form id="add">
+            <input type="text" id='add-node-txtfield' placeholder=" Node Name">
+            <button id="add-node-button" type="button">Add Node</button>
+            <br>
+            <br>
+        </form>
 
-    <form id="delete">
-        Node (ID): <input type="text" id='delete-node-txtfield'>
-        <button id="delete-node-button" type="button">Delete Node</button>
-        <br>
-        <br>
-    </form>
 
-    <form id="connect">
-        To: (ID)<input type="text" id='to'>
-        <br>
-        From: (ID)<input type="text" id='from'>
-        <button id="btnConnect" type="button">Connect</button>
-        <br>
-    </form>
-</div>
+        <form id="delete">
+            <input type="text" id='delete-node-txtfield' placeholder=" Node (ID)">
+            <button id="delete-node-button" type="button">Delete Node</button>
+            <br>
+            <br>
+        </form>
 
-<div class="split right">
-    <h3>Node List</h3>
-    <!--<button id="btn-show-nodes" type="button">Update list</button>-->
-    <p id="nodeList"></p>
+
+        <form id="connect">
+            <input type="text" id='to' placeholder=" To (ID) ">
+            <br>
+            <input type="text" id='from' placeholder=" From (ID)">
+            <button id="btnConnect" type="button">Connect</button>
+            <br>
+        </form>
+    </div>
+
+    <div class="column-right">
+        <p id="nodeList"></p>
+    </div>
+
 </div>
 
 <script type="text/javascript" src="graph.js"></script>
