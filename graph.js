@@ -1,4 +1,5 @@
 let btnConnect = document.getElementById('btnConnect');
+let btnRemoveConnect = document.getElementById('btnRemoveConnect');
 let to = document.getElementById('to');
 let from = document.getElementById('from');
 let btnDeleteNode = document.getElementById('delete-node-button');
@@ -86,7 +87,8 @@ let network = new vis.Network(container, data, options);
 showNodesList();
 btnAddNode.addEventListener('click', addNode);
 btnDeleteNode.addEventListener('click', deleteNode);
-btnConnect.addEventListener('click',connectNode)
+btnConnect.addEventListener('click',connectNode);
+//btnRemoveConnect.addEventListener('click',deleteConnection)
 
 function connectNode() {
     if(to.value !== '' && from.value !== '') {
@@ -95,6 +97,16 @@ function connectNode() {
         from.value = '';
     }
 }
+
+/*
+function deleteConnection(){
+    if(to.value !== '' && from.value !== '') {
+        edges.delete({to: parseInt(to.value), from: parseInt(from.value)});
+        to.value = '';
+        from.value = '';
+    }
+}
+*/
 
 function addNode() {
     if(labelNewNode.value !== '') {
